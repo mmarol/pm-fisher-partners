@@ -1,0 +1,20 @@
+{% extends "base.twig" %}
+
+{% set page_class = "blog" %}
+
+{% block content %}
+	<section class="blog-posts">
+		{% for post in posts %}
+			<article class="blog-post">
+				<a href="{{ post.link }}" class="blog-post__link">
+					<figure class="blog-post__image">
+						<img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" srcset="{{ post.thumbnail.srcset }}">
+					</figure>
+
+					<time class="blog-post__date" datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+					<h3 class="blog-post__title">{{ post.title }}</h3>
+				</a>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock %}

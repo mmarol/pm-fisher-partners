@@ -1,4 +1,3 @@
-// const gulp = require("gulp");
 const { src, dest, series, parallel, watch } = require("gulp");
 const yargs = require("yargs");
 const del = require("del");
@@ -23,7 +22,7 @@ function browserSyncServer(cb) {
 	browserSync.init({
 		// notify: false, // disables browsersync notification in browser
 		// open: false, // doesn't open a new browser window on start
-		proxy: "basic-wordpress-setup.local",
+		proxy: "pm-fisher-partners.local",
 	});
 	cb();
 }
@@ -40,6 +39,21 @@ async function clean(cb) {
 
 function styles(cb) {
 	src(`${origin}/scss/style.scss`)
+		.pipe(gulpif(!PRODUCTION, sourcemaps.init()))
+		.pipe(sass().on("error", sass.logError))
+		.pipe(gulpif(PRODUCTION, postcss([autoprefixer])))
+		.pipe(
+			gulpif(
+				PRODUCTION,
+				cleancss({
+					compatibility: "ie8",
+				})
+			)
+		)
+		.pipe(gulpif(!PRODUCTION, sourcemaps.write()))
+		.pipe(dest(`${destination}/css`))
+		.pipe(browserSync.stream());
+	src(`${origin}/scss/editor-styles.scss`)
 		.pipe(gulpif(!PRODUCTION, sourcemaps.init()))
 		.pipe(sass().on("error", sass.logError))
 		.pipe(gulpif(PRODUCTION, postcss([autoprefixer])))
@@ -92,7 +106,7 @@ function scripts(cb) {
 function images(cb) {
 	src(`${origin}/img/**/*.{jpg,jpeg,png,svg,gif}`)
 		.pipe(gulpif(PRODUCTION, imagemin()))
-		.pipe(dest("dist/images"));
+		.pipe(dest("dist/img"));
 	cb();
 }
 
@@ -114,8 +128,8 @@ function watcher(cb) {
 	);
 	watch([
 		`${origin}/**/*`,
-		`!${origin}/{images, js, scss}`,
-		`!${origin}/{images, js, scss}/**/*`,
+		`!${origin}/{images, scripts, styles}`,
+		`!${origin}/{images, scripts, styles}/**/*`,
 	]).on("change", series(copy, browserSyncReload));
 	watch([`**/*.php`, `**/*.twig`], series(browserSyncReload));
 	cb();

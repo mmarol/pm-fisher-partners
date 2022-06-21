@@ -1,0 +1,150 @@
+{% extends "base.twig" %}
+
+{% set page_class = "home" %}
+{% set optional_classes = "inverted no-padding" %}
+
+{% block content %}
+	<section class="home-carousel glide">
+		<div class="glide__track" data-glide-el="track">
+			<div class="glide__slides">
+				{% for media in post.meta('featured_project_carousel') %}
+					<figure class="home-carousel__slide glide__slide">
+						<img class="home-carousel__image" src="{{ media.thumbnail.src }}" alt="{{ media.thumbnail.alt }}" srcset="{{ media.thumbnail.srcset }}">
+						{% if media.thumbnail.caption %}
+							<figcaption class="home-carousel__caption">
+								<p class="home-carousel__caption-title">{{ media.thumbnail.caption }}</p>
+								{% if media.thumbnail.post_content %}
+									<p class="home-carousel__caption-description">{{ media.thumbnail.post_content }}</p>
+								{% endif %}
+							</figcaption>
+						{% endif %}
+						<div class="home-carousel__counter">{{ loop.index }}/{{ loop.length }}</div>
+					</figure>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="glide__arrows home-carousel__arrows" data-glide-el="controls">
+			<button class="glide__arrow glide__arrow--left home-carousel__arrow home-carousel__arrow--left" data-glide-dir="<">{{ source( directory ~ "/dist/img/arrow__left.svg") }}</button>
+			<button class="glide__arrow glide__arrow--right home-carousel__arrow home-carousel__arrow--right" data-glide-dir=">">{{ source( directory ~ "/dist/img/arrow__right.svg") }}</button>
+		</div>
+	</section>
+
+	<section class="intro">
+		<h2 class="page__subtitle intro__title">{{ post.purpose_title }}</h2>
+		<div class="page__intro intro__description">{{ post.meta('purpose_description') }}</div>
+	</section>
+
+	<section class="project-categories__container">
+		<h2 class="page__subtitle">{{ post.projects_title }}</h2>
+		<div class="project-categories">
+			{% set culture_project = Post(post.meta('project_categories').culture_project) %}
+			<div class="project-category">
+				<h4 class="project-category__label">Culture</h4>
+				<a class="project-category__project" href="{{ culture_project.link }}">
+					<h3 class="project-category__title">{{ culture_project.title }}</h3>
+					<figure class="project-category__image">
+						<img src="{{ culture_project.thumbnail }}" alt="{{ culture_project.thumbnail.alt }}" srcset="{{ culture_project.thumbnail.srcset }}">
+						<figcaption class="project-category__caption">{{ culture_project.location }}
+							|
+							{{ culture_project.completion_date|date('Y') }}</figcaption>
+					</figure>
+				</a>
+			</div>
+			{% set live_project = Post(post.meta('project_categories').live_project) %}
+			<div class="project-category">
+				<h4 class="project-category__label">Live</h4>
+				<a class="project-category__project" href="{{ live_project.link }}">
+					<h3 class="project-category__title">{{ live_project.title }}</h3>
+					<figure class="project-category__image">
+						<img src="{{ live_project.thumbnail }}" alt="{{ live_project.thumbnail.alt }}" srcset="{{ live_project.thumbnail.srcset }}">
+						<figcaption class="project-category__caption">{{ live_project.location }}
+							|
+							{{ live_project.completion_date|date('Y') }}</figcaption>
+					</figure>
+				</a>
+			</div>
+			{% set learn_project = Post(post.meta('project_categories').learn_project) %}
+			<div class="project-category">
+				<h4 class="project-category__label">Learn</h4>
+				<a class="project-category__project" href="{{ learn_project.link }}">
+					<h3 class="project-category__title">{{ learn_project.title }}</h3>
+					<figure class="project-category__image">
+						<img src="{{ learn_project.thumbnail }}" alt="{{ learn_project.thumbnail.alt }}" srcset="{{ learn_project.thumbnail.srcset }}">
+						<figcaption class="project-category__caption">{{ learn_project.location }}
+							|
+							{{ learn_project.completion_date|date('Y') }}</figcaption>
+					</figure>
+				</a>
+			</div>
+			{% set work_project = Post(post.meta('project_categories').work_project) %}
+			<div class="project-category">
+				<h4 class="project-category__label">Work</h4>
+				<a class="project-category__project" href="{{ work_project.link }}">
+					<h3 class="project-category__title">{{ work_project.title }}</h3>
+					<figure class="project-category__image">
+						<img src="{{ work_project.thumbnail }}" alt="{{ work_project.thumbnail.alt }}" srcset="{{ work_project.thumbnail.srcset }}">
+						<figcaption class="project-category__caption">{{ work_project.location }}
+							|
+							{{ work_project.completion_date|date('Y') }}</figcaption>
+					</figure>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="highlights__container">
+		<h2 class="page__subtitle">{{ post.highlights_title }}</h2>
+		<div class="highlights">
+			<div class="highlight__spacer"></div>
+			{% for highlight in post.meta('highlights') %}
+				<article class="highlight highlight--{{ highlight.size|lower }}">
+
+					{% if highlight.acf_fc_layout == 'project' %}
+						{% set item = Post(highlight.project) %}
+						<h4 class="highlight__category">Project</h4>
+						<h3 class="highlight__title--alt">
+							<a href="{{ item.link }}">{{ item.title }}</a>
+						</h3>
+						{% if item.awards %}
+							<p class="highlight__description">{{ item.meta('awards')|join(' | ') }}</p>
+						{% endif %}
+						<p class="highlight__description">{{ item.location }}
+							|
+							{{ item.completion_date|date('Y') }}</p>
+						<img class="highlight__image" src="{{ item.thumbnail.src }}" alt="{{ item.thumbnail.alt }}" srcset="{{ item.thumbnail.srcset }}"/>
+
+					{% elseif highlight.acf_fc_layout == 'award' %}
+						{% set item = Post(highlight.award) %}
+						<h4 class="highlight__category">Award</h4>
+						<h3 class="highlight__title">
+							<a href="{{ item.meta('projects')[0].link }}">{{ item.title }}</a>
+						</h3>
+						<p class="highlight__description">For the
+							<i>{{ item.meta('projects')[0].post_title }}</i>
+							project</p>
+						<p class="highlight__description">{{ item.meta('projects')[0].location }}
+							|
+							{{ item.meta('projects')[0].completion_date|date('Y') }}</p>
+
+					{% elseif highlight.acf_fc_layout == 'quote' %}
+						<h4 class="highlight__category">Quote</h4>
+						<figure class="highlight__quote-container">
+							<blockquote class="highlight__quote">{{ highlight.quote }}</blockquote>
+							<cite class="highlight__citation">— {{ highlight.citation }}</cite>
+						</figure>
+
+					{% elseif highlight.acf_fc_layout == 'press' %}
+						{% set item = Post(highlight.press) %}
+						<h4 class="highlight__category">Press</h4>
+						<h3 class="highlight__title">
+							<a href="{{ item.meta('link') }}">{{ item.title }}</a>
+						</h3>
+						<p class="highlight__description">{{ item.news_source }}</p>
+						<p class="highlight__description">{{ item.publish_date|date('F j, Y') }}</p>
+
+					{% endif %}
+				</article>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}

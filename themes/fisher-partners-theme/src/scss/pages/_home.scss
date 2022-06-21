@@ -1,0 +1,390 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.home-carousel {
+}
+
+.home-carousel__slide {
+    margin: 0;
+    position: relative;
+    line-height: 1;
+}
+
+.home-carousel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-carousel__caption {
+    position: absolute;
+    color: var(--c-background);
+    bottom: 0;
+    left: 0;
+    padding: var(--s-s) var(--s-l);
+    filter: drop-shadow(2px 2px 4px var(--c-secondary));
+}
+
+.home-carousel__caption-title {
+    @extend %info-title;
+    margin: 0;
+}
+
+.home-carousel__caption-description {
+    @extend %info-detail;
+    margin: 0;
+}
+
+.home-carousel__counter {
+    position: absolute;
+    color: var(--c-background);
+    bottom: 0;
+    right: 0;
+    padding: var(--s-s) var(--s-l);
+    @extend %info-detail;
+    filter: drop-shadow(2px 2px 4px var(--c-secondary));
+}
+
+.home-carousel__arrows {
+    position: absolute;
+    top: calc(50% - (var(--s-l) / 2));
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-carousel__arrow {
+    background: none;
+    border: none;
+    padding: var(--s-l);
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    svg {
+        height: var(--s-l);
+        width: auto;
+        filter: drop-shadow(2px 2px 4px var(--c-secondary));
+    }
+}
+
+.home-carousel__arrow--left {
+}
+
+.home-carousel__arrow--right {
+}
+
+.intro {
+    margin: var(--s-l);
+    margin-bottom: var(--s-xxl);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.intro__title {
+    // flex-basis: 4/12 * 100%;
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(4);
+        border-bottom: none;
+    }
+}
+
+.intro__description {
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(8);
+    }
+}
+
+.project-categories__container {
+    margin: var(--s-l);
+    margin-bottom: var(--s-xxl);
+}
+
+.project-categories {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-category {
+    @include mixins.columns(12);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--s-l);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(3);
+        margin-bottom: 0;
+    }
+}
+
+.project-category__label {
+    @extend %tag;
+    margin-bottom: var(--s-xs);
+    padding-bottom: var(--s-xs);
+    border-bottom: 1px solid var(--c-secondary);
+    color: var(--c-secondary);
+}
+
+.project-category__project {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-decoration: none;
+    @extend %block-link;
+
+    &:hover {
+        .project-category__title,
+        .project-category__caption {
+            color: var(--c-secondary);
+        }
+
+        .project-category__image {
+            opacity: 0.8;
+        }
+    }
+}
+
+.project-category__title {
+    @extend %title-tertiary;
+    flex-grow: 1;
+    margin: 0 0 var(--s-xs) 0;
+    transition: color 0.2s ease;
+}
+
+.project-category__image {
+    width: 100%;
+    margin: 0;
+    transition: opacity 0.2s ease;
+
+    img {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+    }
+}
+
+.project-category__caption {
+    @extend %info-title;
+    transition: color 0.2s ease;
+}
+
+.highlights__container {
+    margin: var(--s-l);
+}
+
+.highlights {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.highlight {
+    margin-bottom: var(--s-l);
+    box-sizing: border-box;
+}
+
+.highlight__spacer {
+    width: var(--s-l);
+    height: var(--s-l);
+}
+
+// sorry I'm not using the grid mixin here, haven't tweaked it to work with masonry yet
+.highlight--large {
+    flex-basis: 100%;
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 3 * 2) - var(--s-m));
+        width: calc((100% / 3 * 2) - var(--s-m));
+    }
+
+    .highlight__category {
+        @extend %tag;
+        margin-bottom: var(--s-s);
+        padding-bottom: var(--s-xs);
+        border-bottom: 1px solid var(--c-secondary);
+        color: var(--c-secondary);
+    }
+
+    .highlight__title {
+        @extend %title-tertiary-large;
+        margin-bottom: var(--s-xs);
+
+        a {
+            @extend %block-link;
+        }
+    }
+
+    .highlight__title--alt {
+        @extend %title-tertiary;
+        margin-bottom: var(--s-xs);
+
+        a {
+            @extend %block-link;
+        }
+    }
+
+    .highlight__description {
+        @extend %info-title;
+        margin-bottom: var(--s-xs);
+    }
+
+    .highlight__image {
+        width: 100%;
+        margin-top: var(--s-s);
+    }
+
+    .highlight__quote-container {
+        margin: var(--s-m) 0;
+        padding: var(--s-l) 0;
+        position: relative;
+
+        &::before {
+            content: "“";
+            display: inline-block;
+            text-align: left;
+            color: var(--c-tertiary);
+            font-size: 15rem;
+            line-height: 0;
+            position: absolute;
+            top: 5.5rem;
+            left: -1.3rem;
+        }
+
+        &::after {
+            content: "”";
+            display: inline-block;
+            text-align: right;
+            color: var(--c-tertiary);
+            font-size: 15rem;
+            line-height: 0;
+            padding-top: 6rem;
+            position: absolute;
+            bottom: -4rem;
+            left: -1.3rem;
+        }
+    }
+
+    .highlight__quote {
+        margin: 0;
+
+        p {
+            margin: 0;
+            @extend %quote-large;
+        }
+    }
+
+    .highlight__citation {
+        @extend %info-detail;
+    }
+}
+
+.highlight--small {
+    flex-basis: 100%;
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% / 2) - var(--s-m));
+        width: calc((100% / 2) - var(--s-m));
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 3) - var(--s-m));
+        width: calc((100% / 3) - var(--s-m));
+    }
+
+    .highlight__category {
+        @extend %tag;
+        margin-bottom: var(--s-s);
+        padding-bottom: var(--s-xs);
+        border-bottom: 1px solid var(--c-secondary);
+        color: var(--c-secondary);
+    }
+
+    .highlight__title {
+        @extend %title-tertiary;
+        margin-bottom: var(--s-xs);
+
+        a {
+            @extend %block-link;
+        }
+    }
+
+    .highlight__title--alt {
+        @extend %title-tertiary;
+        margin-bottom: var(--s-xs);
+
+        a {
+            @extend %block-link;
+        }
+    }
+
+    .highlight__description {
+        @extend %info-title;
+        margin-bottom: var(--s-xs);
+    }
+
+    .highlight__image {
+        width: 100%;
+        margin-top: var(--s-s);
+    }
+
+    .highlight__quote-container {
+        margin: var(--s-m) 0;
+        padding: var(--s-l) 0;
+        position: relative;
+
+        &::before {
+            content: "“";
+            display: inline-block;
+            text-align: left;
+            color: var(--c-tertiary);
+            font-size: 15rem;
+            line-height: 0;
+            position: absolute;
+            top: 5.5rem;
+            left: -1.3rem;
+        }
+
+        &::after {
+            content: "”";
+            display: inline-block;
+            text-align: right;
+            color: var(--c-tertiary);
+            font-size: 15rem;
+            line-height: 0;
+            padding-top: 6rem;
+            position: absolute;
+            bottom: -4rem;
+            left: -1.3rem;
+        }
+    }
+
+    .highlight__quote {
+        margin: 0;
+
+        p {
+            @extend %quote-small;
+            margin: 0;
+        }
+    }
+
+    .highlight__citation {
+        @extend %info-detail;
+        display: block;
+        margin-top: var(--s-xs);
+        color: var(--c-primary);
+    }
+}

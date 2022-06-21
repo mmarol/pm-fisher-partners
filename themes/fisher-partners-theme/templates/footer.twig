@@ -1,1 +1,47 @@
-Copyright {{"now"|date('Y')}}
+<footer id="footer" class="footer">
+	<div class="footer__address footer__column">{{ options.address_a }}</div>
+	<div class="footer__address footer__column">{{ options.address_b }}</div>
+	<div class="footer__contact footer__column">
+		<p class="footer__item">
+			<a class="footer__link" href="{{ options.contact_link.url }}">{{ options.contact_link.title }}</a>
+		</p>
+	</div>
+	<div class="footer__social footer__column">
+		<p class="footer__item">
+			<a class="footer__link" href="tel:{{ options.phone_number }}">{{ options.phone_number }}</a>
+		</p>
+		<p class="footer__item">
+			<a class="footer__link" href="mailto:{{ options.email }}">{{ options.email }}</a>
+		</p>
+		{% if options.instagram_url %}
+			<p class="footer__item">
+				<a class="footer__link" href="{{ options.instagram_url }}"></a>
+			</p>
+		{% endif %}
+		{% if options.youtube_url %}
+			<p class="footer__item">
+				<a class="footer__link" href="{{ options.youtube_url }}"></a>
+			</p>
+		{% endif %}
+		{% if options.linkedin_url %}
+			<p class="footer__item">
+				<a class="footer__link" href="{{ options.linkedin_url }}"></a>
+			</p>
+		{% endif %}
+		{% if options.facebook_url %}
+			<p class="footer__item">
+				<a class="footer__link" href="{{ options.facebook_url }}"></a>
+			</p>
+		{% endif %}
+		{% if options.twitter_url %}
+			<p class="footer__item">
+				<a class="footer__link" href="{{ options.twitter_url }}"></a>
+			</p>
+		{% endif %}
+	</div>
+	<div class="footer__copyright">
+		<p class="footer__item">Copyright ©
+			{{"now"|date('Y')}}
+			Frederick Fisher and Partners. All rights reserved.</p>
+	</div>
+</footer>

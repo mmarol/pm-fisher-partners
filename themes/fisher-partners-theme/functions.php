@@ -142,13 +142,13 @@ class StarterSite extends Timber\Site
 				'core/quote',
 				'core/image',
 				'core/gallery',
+				'core/embed',
 				'core/video',
 				'core/columns',
 			);
 		}
 		return $allowed_block_types;
 	}
-
 
 	/** This is where you add some context
 	 *
@@ -218,6 +218,14 @@ class StarterSite extends Timber\Site
 		);
 
 		add_theme_support('menus');
+
+		add_theme_support('align-wide');
+
+		add_theme_support('responsive-embeds');
+
+		add_theme_support('editor-styles');
+
+		// add_theme_support('wp-block-styles');
 	}
 
 	/** This Would return 'foo bar!'.
@@ -254,6 +262,7 @@ class StarterSite extends Timber\Site
 new StarterSite();
 
 
+
 // ------------------ Additional Dependencies ------------------
 
 
@@ -261,10 +270,23 @@ new StarterSite();
 function load_assets()
 {
 	// Load styles
-	wp_enqueue_style('jaym-stylesheet', get_template_directory_uri() . '/dist/css/style.css', array(), '1.0.0', 'all');
+	wp_enqueue_style('fisher-stylesheet', get_template_directory_uri() . '/dist/css/style.css', array(), '1.0.0', 'all');
+	// wp_enqueue_style('wp-block-library');
+	// wp_enqueue_style('wp-block-library-theme');
+	// wp_enqueue_style('wc-blocks-style');
 
 	// Load scripts
-	wp_enqueue_script('jaym-scripts', get_template_directory_uri() . '/dist/js/build.js', array('jquery'), '1.0.0', true);
+	wp_enqueue_script('fisher-scripts', get_template_directory_uri() . '/dist/js/build.js', array('jquery'), '1.0.0', true);
+	wp_enqueue_script('jquery-ui-draggable');
 }
 
 add_action('wp_enqueue_scripts', 'load_assets');
+
+/**
+ * Registers an editor stylesheet for the theme.
+ */
+function wpdocs_theme_add_editor_styles()
+{
+	add_editor_style('/dist/css/editor-styles.css');
+}
+add_action('admin_init', 'wpdocs_theme_add_editor_styles');

@@ -1,0 +1,117 @@
+{% extends "base.twig" %}
+
+{% set page_class = "project-page" %}
+
+{% block content %}
+	<section class="project__header">
+		<figure class="project__hero">
+			<h1 class="page__title project__title">{{ post.title }}</h1>
+			<img class="project__hero-image" src="{{ post.thumbnail }}" alt="{{ post.thumbnail.alt }}" srcset="{{ post.thumbnail.srcset }}">
+		</figure>
+	</section>
+
+	<section class="project__body">
+		<article class="project__content">
+			{{ post.content }}
+		</article>
+		<aside class="project__information">
+			{% if post.meta('category') %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.category.label }}</h4>
+					<p class="project-detail__text">{{ post.meta('category')|join('</br>') }}</p>
+				</div>
+			{% endif %}
+			{% if post.location %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.location.label }}</h4>
+					<p class="project-detail__text">{{ post.location }}</p>
+				</div>
+			{% endif %}
+			{% if post.completion_date %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.completion_date.label }}</h4>
+					<p class="project-detail__text">{{ post.completion_date }}</p>
+				</div>
+			{% endif %}
+			{% if post.square_footage %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.square_footage.label }}</h4>
+					<p class="project-detail__text">{{ post.square_footage|number_format }}
+						SF</p>
+				</div>
+			{% endif %}
+			{% if post.sustainability %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.sustainability.label }}</h4>
+					<p class="project-detail__text">{{ post.sustainability }}</p>
+				</div>
+			{% endif %}
+			{% if post.meta('project_team') %}
+				<div class="project-detail">
+					<h4 class="project-detail__header">{{ acf.project_team.label }}</h4>
+					<ul class="project-detail__list">
+						{% for person in post.meta('project_team') %}
+							<li class="project-detail__text">{{ person.title }}</li>
+						{% endfor %}
+						{% for affiliate in post.meta('affiliates') %}
+							<li class="project-detail__text">{{ affiliate.name }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			{% if post.meta('awards') %}
+				<div class="project-detail project-detail--awards">
+					<h4 class="project-detail__header">{{ acf.awards.label }}</h4>
+					<ul class="project-detail__list">
+						{% for award in post.meta('awards') %}
+							{% if award.award_link %}
+								<li class="project-detail__text">
+									<a href="{{ award.award_link }}">{{ award.title }}</a>
+								</li>
+							{% else %}
+								<li class="project-detail__text">{{ award.title }}</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		</aside>
+	</section>
+
+
+	{% if post.related_press %}
+		<section class="project__related-content">
+			<h2 class="page__subtitle project__subtitle">{{ acf.related_press.label }}</h2>
+			<div class="project__related-press">
+				{% for press in post.meta('related_press') %}
+					{% if press.link %}
+						{% set press_link = press.link.url %}
+					{% elseif press.pdf %}
+						{% set press_link = press.pdf %}
+					{% endif %}
+					<article class="project__press">
+						<h4 class="project__press-subtitle">{{ press.publish_date|date('F j, Y') }}</h4>
+						<h3 class="project__press-title">
+							<a href="{{ press_link }}">{{ press.title }}</a>
+						</h3>
+					</article>
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
+
+	<section class="project__related-content">
+		<h2 class="page__subtitle project__subtitle">{{ acf.related_projects.label }}</h2>
+		<div class="project__related-projects">
+			{% for project in post.meta('related_projects') %}
+				<article class="project__project">
+					<a href="{{ project.link }}">
+						<img src="{{ project.thumbnail.src }}" alt="{{ project.thumbnail.alt }}" srcset="{{ project.thumbnail.srcset }}" class="project__project-image">
+						<h3 class="project__project-title">{{ project.title }}</h3>
+					</a>
+				</article>
+			{% endfor %}
+		</div>
+	</section>
+
+{% endblock %}

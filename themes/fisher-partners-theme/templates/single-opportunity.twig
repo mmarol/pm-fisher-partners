@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% set page_class = "page-opportunity" %}
+
+{% block content %}
+	<article class="opportunity">
+		<section class="opportunity__information">
+			<h1 class="page__title opportunity__title">{{ post.title }}</h1>
+			<time class="opportunity__date" datetime="{{ post.posted_date|date('Y-m-d H:i:s') }}">{{ post.posted_date|date('F j, Y') }}</time>
+			<p class="opportunity__contact">
+				<a class="page__button" href="mailto:{{ post.contact_email }}">{{ post.contact_button_text }}</a>
+			</p>
+		</section>
+		<section class="opportunity__details">
+			{% for section in post.meta('text_section') %}
+				<div class="opportunity__section">
+					<h3 class="opportunity__subtitle">{{ section.title }}</h3>
+					<div class="opportunity__description">{{ section.description }}</div>
+				</div>
+			{% endfor %}
+		</section>
+	</article>
+{% endblock %}

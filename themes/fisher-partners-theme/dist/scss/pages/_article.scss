@@ -1,0 +1,82 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.article {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article__header {
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    width: 100%;
+    position: relative;
+}
+
+.article__hero {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.article__hero-image {
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    height: calc(90% - var(--s-l));
+    flex-basis: calc(90% - var(--s-l));
+    object-fit: cover;
+    order: 1;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 2;
+    }
+}
+
+.article__title {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    width: 100%;
+    margin: 0;
+    padding: var(--s-xl) var(--s-xl) var(--s-m) var(--s-xl);
+    text-align: center;
+    box-sizing: border-box;
+    order: 2;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 1;
+    }
+}
+
+.article__date {
+    width: 100%;
+    order: 3;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 3;
+    }
+}
+
+.article__body {
+    margin: var(--s-xl);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.article__content {
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(10);
+    }
+}

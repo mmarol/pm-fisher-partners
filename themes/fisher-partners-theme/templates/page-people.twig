@@ -1,0 +1,50 @@
+{% extends "base.twig" %}
+
+{% set page_class = "people" %}
+
+{% block content %}
+	<section class="partners">
+		<h2 class="page__subtitle partners__title">{{ page.partners_title }}</h2>
+		<div class="page__description partners__description">{{ page.meta('partners_description') }}</div>
+		<section class="partners__grid">
+			{% for partner in Post(page.partners) %}
+				<article class="partner">
+					<figure class="partner__image">
+						<img src="{{ Image(partner.headshot).src }}" alt="{{ Image(partner.headshot).alt }}" srcset="{{ Image(partner.headshot).srcset }}">
+					</figure>
+					<section class="partner__primary">
+						<div class="partner__title">
+							<h3 class="partner__name">{{ partner.title }}
+								{{ partner.licensing }}</h3>
+							<p class="partner__email">{{ partner.email }}</p>
+						</div>
+						<button class="partner__toggle"></button>
+					</section>
+					<section class="partner__secondary">{{ partner.meta('bio') }}</section>
+				</article>
+			{% endfor %}
+			<div class="partners__spacer"></div>
+		</section>
+	</section>
+
+	<section class="team">
+		<h2 class="page__subtitle team__title">{{ page.team_title }}</h2>
+		<div class="page__description team__description">{{ page.meta('team_description') }}</div>
+		<div class="team__list">
+			{% for category in page.meta('team') %}
+				<article class="team__column">
+					<h3 class="team__category">{{ category.role }}</h3>
+					{% for person in category.people %}
+						<p class="team__person">{{ person.title }}</p>
+						{% if person.email %}
+							<p class="team__role">
+								<a href="mailto:{{ person.meta('email') }}">{{ person.meta('email') }}</a>
+							</p>
+						{% endif %}
+					{% endfor %}
+				</article>
+			{% endfor %}
+		</div>
+	</section>
+
+{% endblock %}

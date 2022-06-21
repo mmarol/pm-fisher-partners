@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% set page_class = "delight-page" %}
+{% set optional_classes = "inverted no-padding" %}
+
+{% block content %}
+	<section class="delights">
+		{% for delight in delights %}
+			<article class="delight__item">
+				<figure class="delight__image">
+					<img src="{{ Image(delight.image).src }}" alt="{{ Image(delight.image).alt }}" srcset="{{ Image(delight.image).srcset }}">
+					<button class="delight__close">{{ source( directory ~ "/dist/img/nav--close.svg") }}</button>
+				</figure>
+				<section class="delight__details">
+					<p class="delight__title">{{ delight.title }}</p>
+					<p class="delight__artist">{{ delight.artist }}</p>
+					<div class="delight__text">{{ delight.meta('description') }}</div>
+				</section>
+			</article>
+		{% endfor %}
+		<div class="delights__description">{{ page.inspiration_description }}</div>
+	</section>
+
+	{# couldn't really figure out the responsive stuff with the javascript, so I'm just duplicating and hiding the whole container #}
+	<section class="delights--mobile">
+		{% for delight in delights %}
+			<article class="delight__item--mobile">
+				<figure class="delight__image--mobile">
+					<img src="{{ Image(delight.image).src }}" alt="{{ Image(delight.image).alt }}" srcset="{{ Image(delight.image).srcset }}">
+				</figure>
+				<section class="delight__details--mobile">
+					<p class="delight__title--mobile">{{ delight.title }}</p>
+					<p class="delight__artist--mobile">{{ delight.artist }}</p>
+					<div class="delight__text--mobile">{{ delight.meta('description') }}</div>
+				</section>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock %}

@@ -1,19 +1,34 @@
 // Base
-@use "base/normalize";
-@use "base/base";
+@import "base/normalize";
+@import "base/base";
 
 // Components
-@use "components/component";
+@import "components/navigation";
+@import "components/footer";
+@import "components/page";
 
 // Layout
-@use "layout/layout";
+@import "layout/wp-blocks";
+@import "layout/grid";
 
 // Themes
-@use "themes/theme";
-@use "themes/admin";
+// @import "themes/theme";
+// @import "themes/admin";
 
 // Pages
-@use "pages/page";
+@import "pages/home";
+@import "pages/projects";
+@import "pages/studio";
+@import "pages/team";
+@import "pages/news";
+@import "pages/engage";
+@import "pages/opportunity";
+@import "pages/project";
+@import "pages/delight";
+@import "pages/blog";
+@import "pages/article";
 
 // Vendors
-// @use "vendors/" as ;
+@import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "vendors/carousel-overrides";
+// @import "../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";

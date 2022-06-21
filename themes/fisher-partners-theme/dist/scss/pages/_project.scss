@@ -1,0 +1,184 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.project {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project__header {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
+    height: 80vh;
+    width: 100%;
+    position: relative;
+}
+
+.project__hero {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.project__hero-image {
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    height: calc(90% - var(--s-l));
+    flex-basis: calc(90% - var(--s-l));
+    object-fit: cover;
+    order: 1;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 2;
+    }
+}
+
+.project__title {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    width: 100%;
+    margin: 0;
+    padding: var(--s-xl) var(--s-xl) var(--s-m) var(--s-xl);
+    text-align: center;
+    box-sizing: border-box;
+    order: 2;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 1;
+    }
+}
+
+.project__body {
+    margin: var(--s-xl);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.project__content {
+    width: 100%;
+    order: 2;
+
+    @include mixins.respond-above(variables.$break-m) {
+        order: 1;
+        @include mixins.columns(10);
+    }
+}
+
+.project__information {
+    position: relative;
+    width: 100%;
+    order: 1;
+    columns: 2;
+    margin-bottom: var(--s-l);
+
+    @include mixins.respond-above(variables.$break-m) {
+        display: flex;
+        flex-wrap: wrap;
+        columns: 1;
+        order: 2;
+        @include mixins.columns(2, false);
+    }
+}
+
+.project-detail {
+    // @include mixins.columns(4);
+    margin-bottom: var(--s-xs);
+    width: 100%;
+    break-inside: avoid;
+}
+
+.project-detail--awards {
+    column-span: all;
+}
+
+.project-detail__header {
+    @extend %info-title;
+    margin-top: 0;
+    margin-bottom: var(--s-xxs);
+    color: var(--c-secondary);
+}
+
+.project-detail__text {
+    @extend %info-detail;
+    margin: 0;
+    margin-bottom: var(--s-xs);
+
+    a {
+        @extend %inline-link;
+    }
+}
+
+.project-detail__text + .project-detail__text {
+    margin-top: var(--s-xs);
+}
+
+.project-detail__list {
+    break-inside: avoid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: var(--s-xs);
+}
+
+.project__related-content {
+    margin: var(--s-xl);
+}
+
+.project__related-press {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project__press {
+    @include mixins.columns(4);
+}
+
+.project__press-subtitle {
+    @extend %info-title;
+    margin-bottom: 0;
+}
+
+.project__press-title {
+    @extend %title-tertiary;
+    margin-top: var(--s-xs);
+
+    a {
+        @extend %block-link;
+    }
+}
+
+.project__related-projects {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project__project {
+    @include mixins.columns(3);
+
+    a {
+        text-decoration: none;
+        .project__project-title {
+            @extend %block-link;
+        }
+    }
+}
+
+.project__project-image {
+    width: 100%;
+}
+
+.project__project-title {
+    margin-top: var(--s-xs);
+    @extend %title-tertiary;
+}

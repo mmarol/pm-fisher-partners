@@ -1,0 +1,59 @@
+/* --------------------------------------------------------
+RESPONSIVE QUERY MIXIN
+Usage Example: 
+    @include mixins.respond-above(s-l) {
+        // color: red;
+    };
+The arguments can be any of the variable key names in ../abstracts/_responsize-sizes.scss.
+-------------------------------------------------------- */
+@mixin respond-above($breakpoint) {
+    $queries: "screen and (min-width: #{$breakpoint})";
+    @media #{$queries} {
+        @content;
+    }
+}
+
+@mixin respond-below($breakpoint) {
+    $queries: "screen and (max-width: #{$breakpoint})";
+
+    @media #{$queries} {
+        @content;
+    }
+}
+
+/* --------------------------------------------------------
+GRID MIXIN
+Usage Example: 
+    @include mixins.columns(5);
+    @include mixins.columns(5, 3); // 5 column element with 3 column margin right
+The arguments can be any of the variable key names in ../abstracts/_responsize-sizes.scss.
+-------------------------------------------------------- */
+@mixin columns($widthColNums, $hasMargin: true, $marginColNums: 0) {
+    @if $widthColNums < 12 and $hasMargin {
+        // $gutter-correction: calc(var(--grid-col-gutter) * (var(--grid-col-num) - $widthColNums) / var(--grid-col-num));
+        // flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%) - $gutter-correction);
+        // width: calc(($widthColNums / var(--grid-col-num) * 100%) - $gutter-correction);
+        // margin-right: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + (var(--grid-col-gutter) / 2));
+        // margin-left: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + (var(--grid-col-gutter) / 2));
+        // $itemsPerRow: 12 / $widthColNums;
+        // @debug $widthColNums;
+        // &:first-child {
+        //     margin-left: 0;
+        // }
+
+        // &:nth-child(#{$itemsPerRow}n + 1) {
+        //     margin-right: 0;
+        // }
+        flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+        width: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+        margin-right: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + var(--grid-col-gutter));
+    } @else if $widthColNums < 12 and $hasMargin == false {
+        flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%));
+        width: calc(($widthColNums / var(--grid-col-num) * 100%));
+        margin-right: 0;
+    } @else {
+        flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%));
+        width: calc(($widthColNums / var(--grid-col-num) * 100%));
+        margin-right: 0;
+    }
+}

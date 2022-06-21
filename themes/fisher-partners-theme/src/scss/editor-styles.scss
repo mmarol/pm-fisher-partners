@@ -1,0 +1,234 @@
+@use "./abstracts/variables";
+@use "./abstracts/type-styles";
+@use "./utilities/mixins";
+
+/* Set global width for all Gutenberg blocks - this should be the same as your article width */
+.wp-block {
+    // max-width: 640px;
+    width: 100%;
+
+    &[data-align="full"] {
+        max-width: 840px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    &[data-align="wide"] {
+        max-width: 840px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Main typography elements */
+
+/* Sans Serif font for headers */
+.editor-block-list__layout .editor-block-list__block,
+.editor-post-title__block .editor-post-title__input,
+h1.rich-text.block-editor-rich-text__editable,
+h2.rich-text.block-editor-rich-text__editable,
+h3.rich-text.block-editor-rich-text__editable,
+h4.rich-text.block-editor-rich-text__editable,
+h5.rich-text.block-editor-rich-text__editable,
+h6.rich-text.block-editor-rich-text__editable,
+.has-medium-font-size,
+#post-title-0,
+table {
+    font-family: "Benton Sans", sans-serif;
+}
+
+/* Serif font for body text */
+.editor-block-list__layout .editor-block-list__block p,
+.rich-text.block-editor-rich-text__editable.wp-block-paragraph,
+.block-editor-block-list__layout.is-root-container,
+ul,
+ol {
+    font-family: "Benton Sans", sans-serif;
+}
+
+/* Monospace font for code */
+pre,
+code,
+kbd,
+tt,
+var {
+    font-family: "Benton Sans", sans-serif;
+}
+
+/* Format post images */
+.wp-block-image img {
+}
+
+/* Format image captions */
+.wp-block-image figcaption,
+.wp-block-gallery figcaption,
+figcaption {
+    @extend %caption;
+    text-align: left;
+}
+
+/*--------------------------------------------------------------
+ # Typography
+ --------------------------------------------------------------*/
+h1.wp-block-post-title {
+    @extend %title-primary;
+    margin-top: 0;
+}
+
+h1.rich-text.block-editor-rich-text__editable {
+    @extend %title-primary;
+    margin-top: 0;
+}
+
+h2.rich-text.block-editor-rich-text__editable {
+    @extend %title-secondary;
+    margin-top: 0;
+}
+
+h3.rich-text.block-editor-rich-text__editable {
+    @extend %title-tertiary;
+    margin-top: 0;
+}
+
+h4.rich-text.block-editor-rich-text__editable {
+    @extend %title-tertiary;
+    margin-top: 0;
+}
+
+h5.rich-text.block-editor-rich-text__editable {
+    @extend %title-tertiary;
+    margin-top: 0;
+}
+
+h6.rich-text.block-editor-rich-text__editable {
+    @extend %title-tertiary;
+    margin-top: 0;
+}
+
+p.rich-text.block-editor-rich-text__editable {
+    @extend %description;
+}
+
+/* Format code blocks */
+pre {
+    background: #f3f3f3;
+    border-radius: 4px;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
+    white-space: pre-wrap;
+    max-height: 650px;
+}
+
+/* Format inline code blocks */
+code,
+kbd,
+tt,
+var {
+    background: #f3f3f3;
+    padding: 2px 7px 2px 7px;
+    border-radius: 4px;
+}
+
+/* Format blockquotes */
+.wp-block-quote {
+    @extend %quote-small;
+    border: none;
+    margin-left: auto;
+    padding-top: var(--s-xl);
+    padding-bottom: var(--s-xl);
+    padding-left: 0;
+    color: var(--c-secondary);
+
+    p {
+        margin-bottom: 0;
+    }
+
+    &::before {
+        content: "“";
+        font-family: "Benton Sans Compressed", sans-serif;
+        display: inline-block;
+        color: var(--c-tertiary);
+        font-size: 15rem;
+        line-height: 0;
+        padding-top: var(--s-xxl);
+        position: absolute;
+        top: 0.5rem;
+        left: -1rem;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: "”";
+        font-family: "Benton Sans Compressed", sans-serif;
+        display: inline-block;
+        color: var(--c-tertiary);
+        font-size: 15rem;
+        line-height: 0;
+        // padding-bottom: var(--s-xxl);
+        position: absolute;
+        bottom: -3.5rem;
+        left: -0.8rem;
+        top: auto;
+    }
+}
+
+/* Format the cite text in blockquotes */
+dfn,
+cite,
+i {
+    @extend %info-detail;
+    margin-top: var(--s-s);
+}
+
+/* Links & buttons */
+
+a,
+a:visited,
+article a,
+p.feature-credit a,
+p.feature-credit a:visited,
+.menu-items a {
+    @extend %inline-link;
+}
+
+a:hover,
+a:focus,
+a:active,
+article a:hover,
+article a:focus,
+article a:active,
+p.feature-credit a:hover,
+p.feature-credit a:active,
+.menu-items a:hover,
+.menu-items a:active {
+    color: var(--c-secondary);
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+a:hover,
+a:active {
+    outline: 0;
+}
+
+/* Standard WordPress button block */
+.rich-text.block-editor-rich-text__editable.wp-block-button__link,
+.rich-text.block-editor-rich-text__editable.wp-block-button__link:visited {
+    @extend %button;
+}
+
+.rich-text.block-editor-rich-text__editable.wp-block-button__link:hover,
+.rich-text.block-editor-rich-text__editable.wp-block-button__link:focus,
+.rich-text.block-editor-rich-text__editable.wp-block-button__link:active {
+    background: var(--c-secondary);
+}
+
+.wp-block-gallery.blocks-gallery-grid {
+    --wp--style--unstable-gallery-gap: var(--s-l) !important;
+    gap: var(--s-s) !important;
+    column-gap: var(--s-l) !important;
+}

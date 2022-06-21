@@ -1,0 +1,20 @@
+{% extends "base.twig" %}
+
+{% set page_class = "article-page" %}
+
+{% block content %}
+	<article class="article">
+		<section class="article__header">
+			<figure class="article__hero">
+				<h1 class="page__title article__title">{{ post.title }}</h1>
+				<img class="article__hero-image" src="{{ post.thumbnail }}" alt="{{ post.thumbnail.alt }}" srcset="{{ post.thumbnail.srcset }}">
+				<time class="article__date" datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+			</figure>
+		</section>
+		<section class="article__body">
+			<div class="article__content">
+				{{post.content}}
+			</div>
+		</section>
+	</article>
+{% endblock %}

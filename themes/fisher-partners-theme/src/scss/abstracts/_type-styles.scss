@@ -1,19 +1,235 @@
-// @import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Yatra+One&display=swap");
+@use "../utilities/mixins";
+@use "../abstracts/variables";
 
-@mixin heading {
+/*
+Font declarations
+*/
+
+@font-face {
+    font-family: "Benton Sans";
+    src: url("../fonts/Benton Sans Book FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSans.woff2") format("woff2"), url("../fonts/BentonSans.woff") format("woff"),
+    // url("../fonts/Benton Sans Book FF&P.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
 }
 
-@mixin subheading {
+@font-face {
+    font-family: "Benton Sans";
+    src: url("../fonts/Benton Sans Book Italic FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSansItalic.woff2") format("woff2"), url("../fonts/BentonSansItalic.woff") format("woff"),
+    // url("../fonts/Benton Sans Book Italic FF&P.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
 }
 
-@mixin button {
+@font-face {
+    font-family: "Benton Sans";
+    src: url("../fonts/Benton Sans Medium.otf") format("opentype");
+    // src: url("../fonts/BentonSansMedium.woff2") format("woff2"), url("../fonts/BentonSansMedium.woff") format("woff"),
+    // url("../fonts/Benton Sans Medium.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
 }
 
-@mixin body {
+@font-face {
+    font-family: "Benton Sans";
+    src: url("../fonts/Benton Sans Medium Italic.otf") format("opentype");
+    // src: url("../fonts/BentonSansMediumItalic.woff2") format("woff2"),
+    // url("../fonts/BentonSansMediumItalic.woff") format("woff"),
+    //     url("../fonts/Benton Sans Medium Italic.otf") format("opentype");
+    font-weight: 600;
+    font-style: italic;
 }
 
-@mixin nav-item {
+@font-face {
+    font-family: "Benton Sans Compressed";
+    src: url("../fonts/Benton Sans Compressed Book FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSansCompressed.woff2") format("woff2"),
+    // url("../fonts/BentonSansCompressed.woff") format("woff"),
+    //     url("../fonts/Benton Sans Compressed Book FF&P.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
 }
 
-@mixin nav-title {
+@font-face {
+    font-family: "Benton Sans Compressed";
+    src: url("../fonts/Benton Sans Compressed Book Italic FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSansCompressedItalic.woff2") format("woff2"),
+    // url("../fonts/BentonSansCompressedItalic.woff") format("woff"),
+    //     url("../fonts/Benton Sans Compressed Book Italic FF&P.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Benton Sans Compressed";
+    src: url("../fonts/Benton Sans Compressed Medium FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSansCompressedMedium.woff2") format("woff2"),
+    // url("../fonts/BentonSansCompressedMedium.woff") format("woff"),
+    //     url("../fonts/Benton Sans Compressed Medium FF&P.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Benton Sans Compressed";
+    src: url("../fonts/Benton Sans Compressed Medium Italic FF&P.otf") format("opentype");
+    // src: url("../fonts/BentonSansCompressedMediumItalic.woff2") format("woff2"),
+    // url("../fonts/BentonSansCompressedMediumItalic.woff") format("woff"),
+    //     url("../fonts/Benton Sans Compressed Medium Italic FF&P.otf") format("opentype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+/*
+Type styles
+This uses the type size mixin and variables defined in _type-sizes.scss
+*/
+
+%title-primary {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-xxl);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%title-secondary {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: var(--t-xl);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%title-tertiary {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-l);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%title-tertiary-large {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-xxxl);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%quote-large {
+    font-family: "Benton Sans Compressed", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--t-xxxl);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%quote-small {
+    font-family: "Benton Sans Compressed", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--t-xl);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%description {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--t-m);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%caption {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--t-xs);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%info-title {
+    font-family: "Benton Sans Compressed", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-s);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%info-detail {
+    font-family: "Benton Sans", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--t-xs);
+    line-height: var(--l-regular);
+    // color: var(--c-primary);
+}
+
+%button {
+    font-family: "Benton Sans Compressed", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-s);
+    line-height: var(--l-tight);
+    // color: var(--c-primary);
+    text-transform: uppercase;
+}
+
+%tag {
+    font-family: "Benton Sans Compressed", sans-serif;
+    // font-family: sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: var(--t-m);
+    line-height: var(--l-tight);
+    // color: var(--c-secondary);
+    text-transform: uppercase;
+}
+
+%inline-link {
+    color: var(--c-primary);
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--c-secondary);
+    }
+}
+
+%block-link {
+    color: var(--c-primary);
+    transition: color 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--c-secondary);
+    }
+}
+
+%antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }

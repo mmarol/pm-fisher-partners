@@ -1,0 +1,67 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.contact-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--s-xl);
+}
+
+.opportunities {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--s-xl);
+}
+
+.opportunities__subtitle {
+}
+
+.opportunities__description {
+    margin-bottom: var(--s-m);
+}
+
+.opportunities__image {
+    width: 100%;
+}
+
+.opportunities__overview {
+    @include mixins.columns(6);
+}
+
+.opportunities__list {
+    @include mixins.columns(6);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.job-posting {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    margin-bottom: var(--s-l);
+}
+
+.job-posting__date {
+    margin: 0 0 var(--s-xs) 0;
+    @extend %info-title;
+}
+
+.job-posting__title {
+    margin: 0 0 var(--s-xs) 0;
+    @extend %title-tertiary;
+
+    a {
+        @extend %block-link;
+    }
+}
+
+.job-posting__contact {
+    margin: 0;
+    @extend %info-detail;
+
+    a {
+        @extend %inline-link;
+    }
+}

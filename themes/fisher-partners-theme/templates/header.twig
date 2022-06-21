@@ -1,0 +1,33 @@
+{% if menu %}
+	<nav class="header__content" aria-labelledby="hamburger">
+		<div class="header__primary">
+			<button id="header__hamburger--open" class="header__hamburger show" aria-label="Show Navigation Menu" aria-expanded="false" tabindex="0">{{ source( directory ~ "/dist/img/nav--open.svg") }}</button>
+			<div class="header__logo header__logo--desktop">
+				<a href="/">{{ source( directory ~ "/dist/img/logo--full.svg") }}</a>
+			</div>
+			{% if page_class == "home" %}
+				<div id="header__logo--stacked" class="header__logo header__logo--mobile">
+					<a href="/">{{ source( directory ~ "/dist/img/logo--stacked.svg") }}</a>
+				</div>
+			{% else %}
+				<div id="header__logo--simplified" class="header__logo header__logo--mobile">
+					<a href="/">{{ source( directory ~ "/dist/img/logo--simplified.svg") }}</a>
+				</div>
+			{% endif %}
+			<div class="header__spacer"></div>
+		</div>
+		<ul id="header__menu" class="header__menu header__secondary">
+			<button id="header__hamburger--close" class="header__hamburger show" aria-label="Hide Navigation Menu">{{ source( directory ~ "/dist/img/nav--close.svg") }}</button>
+			{% for item in items %}
+				{% if item.current == true %}
+					{% set class = "header__page--current" %}
+				{% else %}
+					{% set class = "" %}
+				{% endif %}
+				<li class="header__page {{ class }}">
+					<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+{% endif %}

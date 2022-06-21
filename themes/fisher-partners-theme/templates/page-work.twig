@@ -1,0 +1,77 @@
+{% extends "base.twig" %}
+
+{% set page_class = "work" %}
+
+{% block content %}
+	<section class="project-filters">
+		<button class="project-filter active" data-filter="*">Latest</button>
+		{% for category in categories %}
+			<button class="project-filter" data-filter=".{{ category.title|replace({' ': '-'})|lower }}">{{ category.title }}</button>
+		{% endfor %}
+	</section>
+
+	<section class="featured-projects">
+		{% for project in projects %}
+			{% if project.is_featured == "Yes" %}
+				{% set category_classes = project.meta('category')|join(' ')|lower %}
+				<article class="featured-project active {{ category_classes }}">
+					<a href="{{ project.link }}" class="featured-project__link">
+						<figure class="featured-project__image">
+							<img src="{{ project.thumbnail.src }}" alt="{{ project.thumbnail.alt }}" srcset="{{ project.thumbnail.srcset }}">
+						</figure>
+						<h3 class="featured-project__title">{{ project.title }}</h3>
+					</a>
+				</article>
+			{% endif %}
+		{% endfor %}
+	</section>
+
+	<section class="project-index">
+		<h2 class="page__subtitle">{{ page.project_index_title }}</h2>
+		<table class="index__list-container" id="projects-table">
+			<thead class="index__headings-container">
+				<tr class="index__headings">
+					<th data-sort="string" data-sort-onload="yes" class="index__heading index__name">
+						<button class="index__filter" data-sort-by="name">Project Name</button>
+					</th>
+					<th data-sort="string" class="index__heading index__category">
+						<button class="index__filter" data-sort-by="category">Category</button>
+					</th>
+					<th data-sort="string" class="index__heading index__location">
+						<button class="index__filter" data-sort-by="location">Location</button>
+					</th>
+					<th data-sort="int" class="index__heading index__size">
+						<button class="index__filter" data-sort-by="size">Size</button>
+					</th>
+					<th data-sort="int" class="index__heading index__date">
+						<button class="index__filter" data-sort-by="date">Date</button>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="index__list">
+				{% for project in projects %}
+
+					{% if project.square_footage == false %}
+						{% set data_value = 'data-sort-value="0"' %}
+					{% else %}
+						{% set data_value = '' %}
+					{% endif %}
+					<tr class="index__item">
+						{% if project.is_featured == "Yes" %}
+							<td class="index__detail index__name">
+								<a href="{{ project.link }}">{{ project.title }}</a>
+							</td>
+						{% else %}
+							<td class="index__detail index__name">{{ project.title }}</td>
+						{% endif %}
+						<td class="index__detail index__category">{{ project.meta('category')|first }}</td>
+						<td class="index__detail index__location">{{ project.location }}</td>
+						<td class="index__detail index__size" {{ data_value }}>{{ project.square_footage }}</td>
+						<td class="index__detail index__date">{{ project.completion_date|date('Y') }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+
+{% endblock %}

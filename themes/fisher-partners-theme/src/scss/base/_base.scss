@@ -1,10 +1,29 @@
-@use "../abstracts/colors";
 @use "../abstracts/type-styles";
-@use "../abstracts/spacing";
+@use "../abstracts/variables";
 
 body {
-    background-color: colors.$secondary-color-3;
-    color: colors.$primary-color-1;
+    background-color: var(--c-background);
+    color: var(--c-primary);
 
-    @include type-styles.body;
+    @extend %description;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+blockquote,
+cite {
+    // margin: 0;
+}
+
+img {
+    // width: 100%;
+}
+
+// a {
+//     color: var(--c-primary);
+// }

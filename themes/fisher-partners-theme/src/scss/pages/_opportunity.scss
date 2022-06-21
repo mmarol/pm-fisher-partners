@@ -1,0 +1,55 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.opportunity {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: var(--s-xl);
+}
+
+.opportunity__information {
+    flex-basis: 100%;
+    margin-bottom: var(--s-l);
+}
+
+.opportunity__title {
+    flex-basis: 100%;
+}
+
+.opportunity__date {
+    flex-basis: 100%;
+
+    @extend %info-title;
+    color: var(--c-secondary);
+}
+
+.opportunity__contact {
+    flex-basis: 100%;
+    @extend %button;
+    margin-top: var(--s-s);
+
+    a {
+        display: inline-block;
+    }
+}
+
+.opportunity__details {
+    columns: 2;
+}
+
+.opportunity__section {
+    // @include mixins.columns(6);
+    margin-right: var(--s-l);
+    margin-bottom: var(--s-l);
+    break-inside: avoid;
+}
+
+.opportunity__subtitle {
+    @extend %info-title;
+}
+
+.opportunity__description {
+    @extend %description;
+}

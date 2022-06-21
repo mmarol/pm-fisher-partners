@@ -1,0 +1,28 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+// @use "node_modules/flexbox-grid-mixins/dart-sass/flexbox-grid-mixins";
+
+$default-grid-columns: 12;
+$default-grid-gutter: 2%;
+
+.grid__container {
+    // width: 100vw;
+    // width: 100%;
+    height: 100vh;
+    // position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    margin: var(--s-xl);
+    // @include flexbox-grid-mixins.grid();
+}
+
+.grid__column--12 {
+    height: 100%;
+    background-color: rgba(255, 128, 128, 0.234);
+
+    // @include flexbox-grid-mixins.grid-col($col: 1, $gutter: 3rem);
+}

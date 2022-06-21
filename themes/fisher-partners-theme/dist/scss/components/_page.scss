@@ -1,0 +1,50 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.page {
+}
+
+.page__title {
+    @extend %title-primary;
+    margin: 0;
+    flex-basis: 100%;
+}
+
+.page__subtitle {
+    @extend %title-secondary;
+    margin: 0;
+    flex-basis: 100%;
+    padding-bottom: var(--s-xs);
+    margin-bottom: var(--s-l);
+    border-bottom: 1px solid var(--c-primary);
+}
+
+.page__intro {
+    @extend %title-secondary;
+}
+
+.page__description {
+    @extend %description;
+
+    p + p {
+        margin-top: var(--s-s);
+    }
+}
+
+.page__column {
+    @include mixins.columns(6);
+}
+
+.page__button {
+    @extend %button;
+    padding: var(--s-xs);
+    border: 1px solid var(--c-primary);
+    text-decoration: none;
+    background-color: var(--c-background);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: var(--c-secondary-light);
+    }
+}
