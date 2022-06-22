@@ -5,13 +5,13 @@
 .contact-form {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .opportunities {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .opportunities__subtitle {
@@ -23,17 +23,42 @@
 
 .opportunities__image {
     width: 100%;
+    margin-bottom: var(--s-l);
 }
 
 .opportunities__overview {
-    @include mixins.columns(6);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(12);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+    }
 }
 
 .opportunities__list {
-    @include mixins.columns(6);
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(12);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+    }
 }
 
 .job-posting {

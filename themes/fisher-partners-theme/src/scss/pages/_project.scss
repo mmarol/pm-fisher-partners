@@ -48,7 +48,7 @@
     flex-basis: 100%;
     width: 100%;
     margin: 0;
-    padding: var(--s-xl) var(--s-xl) var(--s-m) var(--s-xl);
+    padding: var(--s-xl) var(--s-l) var(--s-m) var(--s-l);
     text-align: center;
     box-sizing: border-box;
     order: 2;
@@ -59,7 +59,7 @@
 }
 
 .project__body {
-    margin: var(--s-xl);
+    margin: var(--s-l);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -132,7 +132,7 @@
 }
 
 .project__related-content {
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .project__related-press {
@@ -141,7 +141,15 @@
 }
 
 .project__press {
-    @include mixins.columns(4);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(4);
+    }
 }
 
 .project__press-subtitle {
@@ -164,7 +172,19 @@
 }
 
 .project__project {
-    @include mixins.columns(3);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(4);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(3);
+    }
 
     a {
         text-decoration: none;

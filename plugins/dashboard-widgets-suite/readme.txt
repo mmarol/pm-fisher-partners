@@ -9,9 +9,9 @@ Contributors: specialk
 Author URI: https://plugin-planet.com/
 Donate link: https://monzillamedia.com/donate.html
 Requires at least: 4.6
-Tested up to: 5.9
-Stable tag: 3.0
-Version: 3.0
+Tested up to: 6.0
+Stable tag: 3.1
+Version: 3.1
 Requires PHP: 5.6.20
 Text Domain: dashboard-widgets-suite
 Domain Path: /languages
@@ -341,7 +341,7 @@ For each note, you can specify a level/role user that is allowed to view/read. S
 
 **How to set a required note format?**
 
-By default, the user may choose which format (text, html, code) they want for each note. To change that, so that only one format is used, add the following code to your theme (or child theme) functions.php, or add via simple custom plugin:
+By default, the user may choose which format (text, html, code) they want for each note. To change that, so that only one format is used, add the following code to your theme (or child theme) functions.php, or add via simple [custom plugin](https://digwp.com/2022/02/custom-code-wordpress/):
 
 	function dashboard_widgets_suite_notes_format_custom($field_default) {
 		
@@ -355,7 +355,7 @@ Change `text` to any accepted format: text, html, or code.
 
 **How to add my own note styles?**
 
-To override the default note styles, add the following code to your theme (or child theme) functions.php, or add via simple custom plugin:
+To override the default note styles, add the following code to your theme (or child theme) functions.php, or add via simple [custom plugin](https://digwp.com/2022/02/custom-code-wordpress/):
 
 	function dashboard_widgets_suite_note_styles_custom($css) {
 		
@@ -399,6 +399,11 @@ Links, tweets and likes also appreciated. Thank you! :)
 
 __Thank you__ for using Dashboard Widgets Suite! If you like the plugin, please show support with a [5-star rating &raquo;](https://wordpress.org/support/plugin/dashboard-widgets-suite/reviews/?rate=5#new-post)
 
+
+**3.1 (2022/05/15)**
+
+* Updates plugin documentation
+* Tests on WordPress 6.0
 
 **3.0 (2022/01/10)**
 

@@ -5,6 +5,10 @@
 {% block content %}
 	<section class="contact-form">
 		<h2 class="page__subtitle">{{ page.form_title }}</h2>
+		{{ page.form_shortcode|shortcodes }}
+		<figure class="form__image">
+			<img src="{{ Image(page.form_image).src }}" alt="{{ Image(page.form_image).alt }}" srcset="{{ Image(page.form_image).srcset }}">
+		</figure>
 	</section>
 
 	<section class="opportunities">

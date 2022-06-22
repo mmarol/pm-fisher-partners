@@ -47,7 +47,7 @@
     flex-basis: 100%;
     width: 100%;
     margin: 0;
-    padding: var(--s-xl) var(--s-xl) var(--s-m) var(--s-xl);
+    padding: var(--s-xl) var(--s-l) var(--s-m) var(--s-l);
     text-align: center;
     box-sizing: border-box;
     order: 2;
@@ -67,7 +67,7 @@
 }
 
 .article__body {
-    margin: var(--s-xl);
+    margin: var(--s-l);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;

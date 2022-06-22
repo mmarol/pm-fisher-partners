@@ -6,7 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .opportunity__information {
@@ -27,16 +27,21 @@
 
 .opportunity__contact {
     flex-basis: 100%;
-    @extend %button;
     margin-top: var(--s-s);
 
     a {
+        @extend %button;
+        color: var(--c-primary);
         display: inline-block;
     }
 }
 
 .opportunity__details {
-    columns: 2;
+    columns: 1;
+
+    @include mixins.respond-above(variables.$break-m) {
+        columns: 2;
+    }
 }
 
 .opportunity__section {

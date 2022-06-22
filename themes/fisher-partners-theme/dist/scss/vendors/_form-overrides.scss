@@ -1,0 +1,98 @@
+@use "../abstracts/variables";
+@use "../abstracts/type-styles";
+@use "../utilities/mixins";
+
+.nf-form-fields-required {
+    @extend %caption;
+    margin-bottom: var(--s-m);
+}
+
+.form__image {
+    display: none;
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+        display: block;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+.nf-form-cont {
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(12);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+    }
+}
+
+.nf-form-content {
+    width: 100%;
+
+    nf-fields-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    nf-field {
+    }
+}
+
+.nf-field-label {
+    label {
+        @extend %info-title;
+    }
+}
+
+.nf-field-element {
+    input,
+    textarea {
+        @extend %info-detail;
+        border-radius: 0;
+        border: 1px solid var(--c-secondary);
+        padding: var(--s-xs);
+    }
+
+    input[type="button"] {
+        background-color: var(--c-background);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        @extend %button;
+
+        &:hover {
+            background-color: var(--c-tertiary);
+        }
+    }
+}
+
+.nf-error-msg {
+    @extend %info-detail;
+    color: var(--c-tertiary);
+}
+
+.form__name {
+    // @include mixins.columns(6);
+}
+
+.form__email {
+    // @include mixins.columns(6);
+}
+
+.form__subject {
+    // @include mixins.columns(6);
+}
+
+.form__message {
+    // @include mixins.columns(6);
+}

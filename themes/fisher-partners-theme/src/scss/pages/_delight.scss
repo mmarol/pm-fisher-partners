@@ -11,13 +11,13 @@
 
 .delights {
     width: 100%;
-    height: calc(100vh - var(--s-xl));
+    height: calc(100vh - var(--s-l));
     overflow: hidden;
     display: none;
     flex-wrap: wrap;
     align-items: flex-start;
     position: relative;
-    margin: var(--s-xl) 0;
+    margin: var(--s-l) 0;
 
     @include mixins.respond-above(variables.$break-m) {
         display: flex;
@@ -32,7 +32,7 @@
     display: none;
     flex-wrap: wrap;
     transition: left 0.5s ease, top 0.5s ease, opacity 0.5s ease;
-    margin: var(--s-xl) var(--s-xl);
+    margin: var(--s-xl) var(--s-l);
 
     &:hover {
         z-index: 10;
@@ -116,7 +116,7 @@
 
 .delights__description {
     color: var(--c-background);
-    margin: var(--s-xl);
+    margin: var(--s-l);
     align-self: flex-end;
 
     @include mixins.columns(10);
@@ -147,7 +147,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin: var(--s-xl);
+    margin: var(--s-l);
+    margin-top: var(--s-xxl);
 
     @include mixins.respond-above(variables.$break-m) {
         display: none;

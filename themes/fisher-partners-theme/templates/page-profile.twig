@@ -17,29 +17,52 @@
 	<section class="pillars">
 		<h2 class="page__subtitle pillars__title">{{ page.pillars_title }}</h2>
 		{% for pillar in page.meta('pillars') %}
-			<figure class="pillar {{ pillar.size|lower }}">
-				{% if pillar.text %}
-					<figcaption class="pillar__text">{{ pillar.text }}</figcaption>
-				{% endif %}
-				{% if pillar.illustration %}
-					<div class="pillar__image">
-						<img src="{{ Image(pillar.illustration).src }}" alt="{{ Image(pillar.illustration).alt }}" srcset="{{ Image(pillar.illustration).srcset }}">
-					</div>
-				{% endif %}
-			</figure>
+			{% if pillar.size == "Full" %}
+				<section class="pillar--full">
+					<figure class="pillar">
+						{% if pillar.text %}
+							<figcaption class="pillar__text">{{ pillar.text }}</figcaption>
+						{% endif %}
+						{% if pillar.illustration %}
+							<div class="pillar__image">
+								<img src="{{ Image(pillar.illustration).src }}" alt="{{ Image(pillar.illustration).alt }}" srcset="{{ Image(pillar.illustration).srcset }}">
+							</div>
+						{% endif %}
+					</figure>
+				</section>
+			{% elseif pillar.size == "Half" %}
+				<section class="pillar--half">
+					<figure class="pillar">
+						{% if pillar.text_left %}
+							<figcaption class="pillar__text">{{ pillar.text_left }}</figcaption>
+						{% endif %}
+						{% if pillar.illustration_left %}
+							<div class="pillar__image">
+								<img src="{{ Image(pillar.illustration_left).src }}" alt="{{ Image(pillar.illustration_left).alt }}" srcset="{{ Image(pillar.illustration_left).srcset }}">
+							</div>
+						{% endif %}
+					</figure>
+					<figure class="pillar">
+						{% if pillar.text_right %}
+							<figcaption class="pillar__text">{{ pillar.text_right }}</figcaption>
+						{% endif %}
+						{% if pillar.illustration_right %}
+							<div class="pillar__image">
+								<img src="{{ Image(pillar.illustration_right).src }}" alt="{{ Image(pillar.illustration_right).alt }}" srcset="{{ Image(pillar.illustration_right).srcset }}">
+							</div>
+						{% endif %}
+					</figure>
+				</section>
+			{% endif %}
 		{% endfor %}
 	</section>
 
 	<section class="resilience">
 		<h2 class="page__subtitle resilience__title">{{ page.resilience_title }}</h2>
 		<div class="page__description resilience__description">{{ page.meta('resilience_description') }}</div>
-		<figure class="resilience__image left">
-			<img src="{{ Image(page.resilience_images[0]).src }}" alt="{{ Image(page.resilience_images[0]).alt }}" srcset="{{ Image(page.resilience_images[0]).srcset }}">
-			<figcaption class="resilience__caption">{{ Image(page.resilience_images[0]).caption }}</figcaption>
-		</figure>
-		<figure class="resilience__image right">
-			<img src="{{ Image(page.resilience_images[1]).src }}" alt="{{ Image(page.resilience_images[1]).alt }}" srcset="{{ Image(page.resilience_images[1]).srcset }}">
-			<figcaption class="resilience__caption">{{ Image(page.resilience_images[1]).caption }}</figcaption>
+		<figure class="resilience__image">
+			<img src="{{ Image(page.resilience_image).src }}" alt="{{ Image(page.resilience_image).alt }}" srcset="{{ Image(page.resilience_image).srcset }}">
+			<figcaption class="studio__link">{{ Image(page.resilience_image).caption }}</figcaption>
 		</figure>
 	</section>
 

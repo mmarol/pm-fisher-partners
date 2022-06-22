@@ -5,7 +5,7 @@
 .news {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .books {
@@ -15,8 +15,20 @@
 }
 
 .book {
-    @include mixins.columns(2);
     margin-bottom: var(--s-l);
+    @include mixins.columns(6);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(4);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(3);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(2);
+    }
 }
 
 .book__image {
@@ -43,7 +55,19 @@
 
 .video__container {
     margin: 0 0 var(--s-l) 0;
-    @include mixins.columns(4);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(12);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
 }
 
 .video {
@@ -81,7 +105,11 @@
 
 .press {
     margin-bottom: var(--s-l);
-    @include mixins.columns(6);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(6);
+    }
 }
 
 .press__date {

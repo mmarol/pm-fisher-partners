@@ -159,14 +159,14 @@
     z-index: 20;
     box-sizing: border-box;
     background-color: var(--c-background);
-    // display: none;
-    border-right: 1px solid var(--c-primary);
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: all 0.3s ease;
 
     @include mixins.respond-above(variables.$break-s) {
         width: auto;
         justify-content: flex-start;
+        transform: translateX(-100%);
+        border-right: 1px solid var(--c-primary);
     }
 
     &.show {

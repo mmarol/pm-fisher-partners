@@ -5,14 +5,26 @@
 .partners {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .partners__title {
 }
 
 .partners__description {
-    @include mixins.columns(6);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(10);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+    }
 }
 
 .partners__grid {
@@ -24,25 +36,49 @@
 }
 
 .partners__spacer {
-    width: 0;
+    width: var(--s-l);
 }
 
 .partner {
-    @include mixins.columns(4);
-    margin-bottom: var(--s-xl);
+    margin-bottom: var(--s-l);
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     align-items: flex-start;
     justify-content: flex-start;
+    width: 100%;
+    // @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        width: calc((100% / 2) - var(--s-m));
+        // @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        width: calc((100% / 3) - var(--s-m));
+        // @include mixins.columns(4);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        width: calc((100% / 3) - var(--s-m));
+        // @include mixins.columns(4);
+    }
 }
 
 .partner__image {
     margin: 0;
     margin-bottom: var(--s-xs);
-    height: 18vw;
+    height: 50vw;
     flex-basis: 100%;
     overflow: hidden;
+
+    @include mixins.respond-above(variables.$break-s) {
+        height: 25vw;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        height: 18vw;
+    }
 
     img {
         width: 100%;
@@ -96,36 +132,66 @@
 .partner__secondary {
     flex-basis: 100%;
     margin-top: var(--s-xs);
-    @extend %info-detail;
     display: none;
 
     &.show {
         display: block;
+    }
+
+    p {
+        @extend %info-detail;
+        margin: 0;
     }
 }
 
 .team {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .team__title {
 }
 
 .team__description {
-    @include mixins.columns(6);
+    @include mixins.columns(12);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(10);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(6);
+    }
 }
 
 .team__list {
     flex-basis: 100%;
     margin-top: var(--s-l);
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
+    columns: 1 var(--s-m);
+
+    @include mixins.respond-above(variables.$break-s) {
+        columns: 2 var(--s-m);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        columns: 3 var(--s-m);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        columns: 4 var(--s-m);
+    }
 }
 
 .team__column {
-    @include mixins.columns(3);
+    margin-bottom: var(--s-l);
+    break-inside: avoid;
 }
 
 .team__category {

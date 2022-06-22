@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin: var(--s-l) var(--s-xl) var(--s-xl) var(--s-xl);
+    margin: var(--s-l) var(--s-l) var(--s-xl) var(--s-l);
 }
 
 .project-filter {
@@ -32,14 +32,25 @@
 .featured-projects {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .featured-project {
-    @include mixins.columns(4);
+    @include mixins.columns(12);
     display: none;
     margin-bottom: var(--s-l);
-    transition: all 1s ease;
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(4);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
 
     &.active {
         display: flex;
@@ -58,9 +69,17 @@
 }
 
 .featured-project__image {
-    height: 16vw;
+    height: 50vw;
     overflow: hidden;
     margin: 0 0 var(--s-xs) 0;
+
+    @include mixins.respond-above(variables.$break-s) {
+        height: 25vw;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        height: 16vw;
+    }
 
     img {
         object-fit: cover;
@@ -76,10 +95,7 @@
 }
 
 .project-index {
-    // justify-content: center;
-    // align-items: center;
-    // align-content: center;
-    margin: var(--s-xl);
+    margin: var(--s-l);
 }
 
 .index__list-container {
@@ -158,21 +174,87 @@
 }
 
 .index__name {
-    flex-basis: 40%;
+    flex-basis: 75%;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 80%;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: 55%;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: 40%;
+    }
 }
 
 .index__category {
-    flex-basis: 10%;
+    flex-basis: 25%;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 20%;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: 15%;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: 10%;
+    }
 }
 
 .index__location {
     flex-basis: 30%;
+    display: none;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 10%;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        display: block;
+        flex-basis: 30%;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: 30%;
+    }
 }
 
 .index__size {
     flex-basis: 10%;
+    display: none;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 10%;
+    }
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 10%;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        display: block;
+        flex-basis: 10%;
+    }
 }
 
 .index__date {
     flex-basis: 10%;
+    display: none;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 10%;
+    }
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 10%;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        display: block;
+        flex-basis: 10%;
+    }
 }
